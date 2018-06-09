@@ -55,8 +55,7 @@ let getMovie = () =>{
                     year
                 }
               }
-            `,
-            variables:{"id":"5b15f6df92a9e83d81fdad2e"}
+            `
         },
         headers:{"Authorization":"JWT "+localStorage.getItem('token')}
     })
@@ -64,12 +63,46 @@ let getMovie = () =>{
 
 }
 
-let get
+let createMovie = (data) => {
+    return axios({
+        url:host+"graphql",
+        method:"post",
+        data:{
+            query:`
+              mutation {
+                addMovie(data:{
+                    name:"${data.name}",
+                    image:"${data.image}",
+                    synopsis:"${data.synopsis}",
+                    year:${data.year},
+                    director:"${data.director}",
+                    rank:${data.rank},
+                    premium:${data.premium},
+                    language:"${data.language}",
+                    url:"${data.url}",
+                    duration:"${data.duration}"
+                }){
+                    _id,
+                    name,
+                    director,
+                    synopsis,
+                    year
+                }
+              }
+            `,
+        },
+        headers:{"Authorization":"JWT "+localStorage.getItem('token')}
+    })
+
+
+
+}
 
 
 export  {
     example,
     getMovies,
-    getMovie
+    getMovie,
+    createMovie
 }
 

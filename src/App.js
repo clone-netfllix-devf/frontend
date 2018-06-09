@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {example,getMovies,getMovie} from './services'
+import {example,getMovies,getMovie,createMovie} from './services'
 
 class App extends Component {
 
@@ -31,6 +31,27 @@ class App extends Component {
       console.log(err)
     })
   }
+
+
+  createMovie = () => {
+    let data = {name:"El padrino",
+    image:"saasdasdasd",
+    synopsis:"sadsadsadasdasdsadasd",
+    year:1980,
+    director:"Un fulano",
+    rank:4,
+    premium:false,
+    language:"spanish",
+    url:"asdhalsjdlasjdklaskjd",
+    duration:"123",}
+    createMovie(data).then((resp) => {
+      console.log(resp)
+    }).catch((err) => {
+      console.log(err)
+
+    })
+
+  }
   render() {
     return (
       <div className="App">
@@ -42,6 +63,10 @@ class App extends Component {
 
       <div>
         <button onClick={this.singleMovie} >singleMovie </button>
+      </div>
+
+      <div>
+        <button onClick={this.createMovie} >create Movie </button>
       </div>
 
       </div>
